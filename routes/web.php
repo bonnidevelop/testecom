@@ -4,7 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\usercontroller;
 use App\Http\Controllers\productcontroller;
-
+use App\Models\product;
 use Illuminate\Support\Facades\Session;
 
 /*
@@ -41,3 +41,13 @@ Route::get('/logout', function () {
 
     return view('login');
 });
+
+Route::get('/cartlist',[productcontroller::class,'cartlist']);
+
+Route::get('/removeitem/{id}',[productcontroller::class,'removeitem']);
+
+Route::get('/odernow',[productcontroller::class,'odernow']);
+
+Route::post('/orderplaced',[productcontroller::class,'orderplaced']);
+
+Route::get('/orderlist',[productcontroller::class,'orderlist']);
