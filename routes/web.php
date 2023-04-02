@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\usercontroller;
 use App\Http\Controllers\productcontroller;
 
+use Illuminate\Support\Facades\Session;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +29,15 @@ Route::get('/login', function () {
 Route::post('/login', [usercontroller::class,'login']);
 
 Route::get('/pro', [productcontroller::class,'index']);
+
+Route::get('details/{id}',[productcontroller::class,'details']);
+
+Route::get('/search',[productcontroller::class,'search']);
+
+Route::get('/addcart',[productcontroller::class,'addcart']);
+
+Route::get('/logout', function () {
+    Session::forget('user');
+
+    return view('login');
+});

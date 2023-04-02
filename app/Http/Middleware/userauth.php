@@ -20,6 +20,7 @@ class userauth
             return redirect('/pro');
         }
 
+
         return $next($request);
     }
 }

@@ -1,3 +1,11 @@
+<?php
+
+use App\Http\Controllers\Controller\productcontroller;
+
+$total = [productcontroller::class,'count'];
+
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">E-com</a>
@@ -15,12 +23,24 @@
        
       </ul>
       <ul class="navbar-nav me-left mb-2 mb-lg-0">
-          <li class="nav-item">
-              <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Cart</a>
+        @if(Session::has('user'))
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" d="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{session('user')['name']}}</a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Cart</a></li>
+                <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+              </ul>
           </li>
+        @else
+
+          <li class="nav-item">
+              <a class="nav-link " href="#" tabindex="-1" aria-disabled="true"> login</a>
+          </li>
+
+        @endif
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="d-flex" action="/search" method="get">
+        <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
